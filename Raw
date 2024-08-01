@@ -6,7 +6,7 @@ local function getPlayerStatsFile(playerName)
     return playerStatsFolder.."/"..playerName..".PlayerStats.json"
 end
 local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
-    local response = syn.request({
+    local response = request({
         Url = Webhook,
         Method = "POST",
         Headers = {
