@@ -123,6 +123,7 @@ local function UpdateInGameStats()
     WebhookUpdate(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
 end
 local function SpawnUnit1()
+    if not game:IsLoaded() then game.Loaded:Wait() end
     -- VoteSpeed
     local args = {
         [1] = true
