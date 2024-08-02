@@ -153,6 +153,8 @@ local function SpawnUnit1()
     
     game.Workspace.PlaceOn:Destroy()
     game.Workspace.Enemies:Destroy()
+
+    
     local function GameEnded()
         local IsGameEnded = player.PlayerGui:FindFirstChild("EndGameUI")
         return IsGameEnded ~= nil
