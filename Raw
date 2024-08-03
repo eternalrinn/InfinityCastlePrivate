@@ -127,7 +127,7 @@ local function JoinINFCastle()
     
         local args = {
             [1] = "Play",
-            [2] = getgenv().Room
+            [2] = 5
         }
         
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("InfiniteCastleManager"):FireServer(unpack(args))
