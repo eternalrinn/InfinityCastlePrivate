@@ -2,10 +2,24 @@ local HttpService = game:GetService("HttpService")
 local Webhook = getgenv().Webhook
 local LobbyPlaceId = 12886143095
 local playerStatsFolder = "PlayerStats"
+
+local startTime = os.time()
+
 local function getPlayerStatsFile(playerName)
     return playerStatsFolder.."/"..playerName..".PlayerStats.json"
 end
+
+local function formatTime(seconds)
+    local hours = math.floor(seconds / 3600)
+    local minutes = math.floor((seconds % 3600) / 60)
+    local seconds = seconds % 60
+    return string.format("%02d:%02d:%02d", hours, minutes, seconds)
+end
+
 local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
+    local elapsedTime = os.time() - startTime
+    local formattedTime = formatTime(elapsedTime)
+    
     local response = request({
         Url = Webhook,
         Method = "POST",
@@ -29,6 +43,11 @@ local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, a
                         ["name"] = "Rewards",
                         ["value"] = rewards,
                         ["inline"] = true
+                    },
+                    {
+                        ["name"] = "Match Time",
+                        ["value"] = formattedTime,
+                        ["inline"] = true
                     }
                 },
                 ["footer"] = {
@@ -39,6 +58,7 @@ local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, a
         })
     })
 end
+
 local function savePlayerStats(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
     local playerStats = {
         playerName = playerName,
@@ -56,6 +76,7 @@ local function savePlayerStats(playerName, playerLevel, emeralds, gold, rerolls,
     end
     writefile(playerStatsFile, jsonData)
 end
+
 local function loadPlayerStats(playerName)
     local playerStatsFile = getPlayerStatsFile(playerName)
     if isfile(playerStatsFile) then
@@ -63,7 +84,6 @@ local function loadPlayerStats(playerName)
         local playerStats = HttpService:JSONDecode(jsonData)
         return playerStats
     else
-
         return {
             playerName = playerName,
             playerLevel = 0,
@@ -75,6 +95,7 @@ local function loadPlayerStats(playerName)
         }
     end
 end
+
 local function UpdatePlayerStats()
     local player = game.Players.LocalPlayer
     local playerName = player.DisplayName
@@ -87,6 +108,7 @@ local function UpdatePlayerStats()
     savePlayerStats(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
     WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
 end
+
 local function JoinINFCastle()
     while game.PlaceId == 12886143095 do
         wait(2)
@@ -105,12 +127,13 @@ local function JoinINFCastle()
     
         local args = {
             [1] = "Play",
-            [2] = 5
+            [2] = getgenv().Room
         }
         
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("InfiniteCastleManager"):FireServer(unpack(args))
     end
 end
+
 local function UpdateInGameStats()
     local player = game.Players.LocalPlayer
     local playerName = player.DisplayName
@@ -122,6 +145,7 @@ local function UpdateInGameStats()
     
     WebhookUpdate(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
 end
+
 local function SpawnUnit1()
     if not game:IsLoaded() then game.Loaded:Wait() end
     -- VoteSpeed
@@ -206,6 +230,7 @@ local function SpawnUnit1()
         retry()
     end
 end
+
 if game.PlaceId == LobbyPlaceId then
     UpdatePlayerStats()
     JoinINFCastle()
