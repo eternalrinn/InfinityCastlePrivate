@@ -104,7 +104,7 @@ local function JoinINFCastle()
     
         local args = {
             [1] = "Play",
-            [2] = 5
+            [2] = 0
         }
         
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("InfiniteCastleManager"):FireServer(unpack(args))
