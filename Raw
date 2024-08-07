@@ -84,6 +84,7 @@ local function UpdatePlayerStats()
     local als_jewels = player.Jewels.Value
     local rewards = ""
     savePlayerStats(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
+    WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
 end
 local function JoinINFCastle()
     while game.PlaceId == 12886143095 do
@@ -147,11 +148,8 @@ local function SpawnUnit1()
     part.Anchored = true 
     part.Position = humanoidRootPart.Position - Vector3.new(0, humanoidRootPart.Size.Y / 2 + part.Size.Y / 2, 0)
     part.Parent = game.Workspace
-
     game.Workspace.PlaceOn:Destroy()
     game.Workspace.Enemies:Destroy()
-
-
     local function GameEnded()
         local IsGameEnded = player.PlayerGui:FindFirstChild("EndGameUI")
         return IsGameEnded ~= nil
@@ -195,7 +193,7 @@ local function SpawnUnit1()
             vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
             vim:SendKeyEvent(true, Enum.KeyCode.Right, false, game)
             vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
-            
+
             while task.wait(2) do
                 vim:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 vim:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
