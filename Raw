@@ -194,6 +194,8 @@ local function SpawnUnit1()
             vim:SendKeyEvent(false, Enum.KeyCode.Down, false, game)
             vim:SendKeyEvent(true, Enum.KeyCode.Right, false, game)
             vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
+            vim:SendKeyEvent(true, Enum.KeyCode.Right, false, game)
+            vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
             
             while task.wait(2) do
                 vim:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
