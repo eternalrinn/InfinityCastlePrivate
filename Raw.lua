@@ -84,7 +84,6 @@ local function UpdatePlayerStats()
     local als_jewels = player.Jewels.Value
     local rewards = ""
     savePlayerStats(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
-    WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
 end
 local function JoinINFCastle()
     while game.PlaceId == 12886143095 do
