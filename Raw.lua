@@ -213,6 +213,10 @@ end
 if game.PlaceId == LobbyPlaceId then
     UpdatePlayerStats()
     JoinINFCastle()
+    wait(120)
+    game:GetService("TeleportService"):Teleport(12886143095)
 else 
     SpawnUnit1()
 end
+
+
