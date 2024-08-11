@@ -2,10 +2,19 @@ local HttpService = game:GetService("HttpService")
 local Webhook = getgenv().Webhook
 local LobbyPlaceId = 12886143095
 local playerStatsFolder = "PlayerStats"
+local discorduserid = ""
 local function getPlayerStatsFile(playerName)
     return playerStatsFolder.."/"..playerName..".PlayerStats.json"
 end
 local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, als_jewels, rewards)
+    
+    if getgenv().DiscordId == nil then
+        getid = ""
+    else 
+        getid = getgenv().DiscordId
+        discorduserid = "<@" .. getid .. ">"
+    end
+
     local response = request({
         Url = Webhook,
         Method = "POST",
@@ -13,7 +22,7 @@ local function WebhookUpdate(playerName, playerLevel, emeralds, gold, rerolls, a
             ["Content-Type"] = "application/json"
         },
         Body = HttpService:JSONEncode({
-            ["content"] = "",
+            ["content"] = discorduserid,
             ["embeds"] = {{
                 ["title"] = "ETERNAL SERVICES | Anime Last Stand", 
                 ["description"] = "**User:** ||" .. playerName .. "||\n**Level:** " .. playerLevel,
@@ -116,7 +125,6 @@ local function UpdateInGameStats()
     local rerolls = playerStats.rerolls + 1
     local rewards = "<:rerolls:1268184053509521419> +1 Reroll"
     savePlayerStats(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
-    
     WebhookUpdate(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
 end
 local function SpawnUnit1()
