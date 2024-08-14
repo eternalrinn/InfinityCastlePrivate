@@ -147,6 +147,7 @@ local function SpawnUnit1()
     
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlaceTower"):FireServer(unpack(args))
     -- CPU + GPU SAVER
+    game:GetService("RunService"):Set3dRenderingEnabled(false)
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
     local part = Instance.new("Part")
