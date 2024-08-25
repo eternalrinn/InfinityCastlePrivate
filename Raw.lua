@@ -174,42 +174,8 @@ local function SpawnUnit1()
     until GameEnded()
     
     if GameEnded() then
-        local function activateRetryButton()
-            local EndGameUI = player.PlayerGui:FindFirstChild("EndGameUI")
-            if EndGameUI then
-                local RetryButton = EndGameUI.BG.Buttons:FindFirstChild("Retry")
-                if RetryButton then
-                    RetryButton.Visible = true
-                    RetryButton.Active = true
-                    return true
-                end
-            end
-            return false
-        end
-        activateRetryButton()
         UpdateInGameStats()
-        local vim = game:GetService("VirtualInputManager")
-    
-        local function retry()
-            vim:SendKeyEvent(true, Enum.KeyCode.BackSlash, false, game)
-            vim:SendKeyEvent(false, Enum.KeyCode.BackSlash, false, game)
-            
-            vim:SendKeyEvent(true, Enum.KeyCode.Down, false, game)
-            vim:SendKeyEvent(false, Enum.KeyCode.Down, false, game)
-            vim:SendKeyEvent(true, Enum.KeyCode.Down, false, game)
-            vim:SendKeyEvent(false, Enum.KeyCode.Down, false, game)
-            vim:SendKeyEvent(true, Enum.KeyCode.Right, false, game)
-            vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
-            vim:SendKeyEvent(true, Enum.KeyCode.Right, false, game)
-            vim:SendKeyEvent(false, Enum.KeyCode.Right, false, game)
-
-            while task.wait(2) do
-                vim:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-                vim:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-            end
-        end
-    
-        retry()
+        game:GetService("TeleportService"):Teleport(12886143095)
     end
 end
 if game.PlaceId == LobbyPlaceId then
