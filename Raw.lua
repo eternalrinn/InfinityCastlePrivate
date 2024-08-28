@@ -184,6 +184,7 @@ if game.PlaceId == LobbyPlaceId then
     wait(120)
     game:GetService("TeleportService"):Teleport(12886143095)
 else 
+    wait(10)
     SpawnUnit1()
 end
 
