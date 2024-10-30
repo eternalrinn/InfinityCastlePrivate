@@ -79,7 +79,7 @@ local function loadPlayerStats(playerName)
             gold = 0,
             rerolls = 1,
             als_jewels = 0,
-            rewards = "<:rerolls:1268184053509521419> +1 Reroll "
+            rewards = "<:rerolls:1268184053509521419> +2 Reroll "
         }
     end
 end
@@ -124,8 +124,8 @@ local function UpdateInGameStats()
     local player = game.Players.LocalPlayer
     local playerName = player.DisplayName
     local playerStats = loadPlayerStats(playerName)
-    local rerolls = playerStats.rerolls + 1
-    local rewards = "<:rerolls:1268184053509521419> +1 Reroll"
+    local rerolls = playerStats.rerolls + 2
+    local rewards = "<:rerolls:1268184053509521419> +2 Reroll"
     savePlayerStats(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
     WebhookUpdate(playerName, playerStats.playerLevel, playerStats.emeralds, playerStats.gold, rerolls, playerStats.als_jewels, rewards)
 end
