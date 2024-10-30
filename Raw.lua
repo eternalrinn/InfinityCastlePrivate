@@ -164,7 +164,7 @@ local function SpawnUnit1()
         local IsGameEnded = player.PlayerGui:FindFirstChild("EndGameUI")
         return IsGameEnded ~= nil
     end
-    repeat wait(10)
+    repeat wait(5)
         local tower = workspace:FindFirstChild("Towers"):FindFirstChild(unitname)
         if tower then
             local upgradeArgs = {
@@ -185,7 +185,7 @@ if game.PlaceId == LobbyPlaceId then
     wait(120)
     game:GetService("TeleportService"):Teleport(12886143095)
 else 
-    wait(10)
+    wait(3)
     SpawnUnit1()
 end
 
