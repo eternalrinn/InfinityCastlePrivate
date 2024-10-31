@@ -96,7 +96,7 @@ local function UpdatePlayerStats()
 end
 local function JoinINFCastle()
     while game.PlaceId == 12886143095 do
-        wait(2)
+        wait(5)
         game:GetService("RunService"):Set3dRenderingEnabled(false)
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
