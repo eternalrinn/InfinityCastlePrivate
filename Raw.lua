@@ -98,18 +98,13 @@ local function JoinINFCastle()
     while game.PlaceId == 12886143095 do
         wait(5)
         game:GetService("RunService"):Set3dRenderingEnabled(false)
+        local infCastle = game.Workspace.Lobby.Zones.InfCastle.CFrame
         local player = game.Players.LocalPlayer
         local character = player.Character or player.CharacterAdded:Wait()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
         
-        local position = Vector3.new(28.3693733, 2.72691631, -40.4032669)
-        local lookVector = Vector3.new(-0.766061664, 0, 0.642767608)
-        local upVector = Vector3.new(0, 1, 0)
-        local rightVector = lookVector:Cross(upVector)
-        
-        local InfinityCastleManager = CFrame.fromMatrix(position, rightVector, upVector)
-        
-        humanoidRootPart.CFrame = InfinityCastleManager
+        local offsetPosition = infCastle.Position - Vector3.new(5, 0, 0)
+        humanoidRootPart.CFrame = CFrame.new(offsetPosition)        
     
         local args = {
             [1] = "Play",
@@ -188,5 +183,3 @@ else
     wait(3)
     SpawnUnit1()
 end
-
-
