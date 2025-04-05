@@ -108,7 +108,7 @@ local function JoinINFCastle()
     
         local args = {
             [1] = "Play",
-            [2] = 1,
+            [2] = 5,
             [3] = "True"
         }
         
