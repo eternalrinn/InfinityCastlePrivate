@@ -133,6 +133,7 @@ local function SpawnUnit1()
     
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("VoteChangeTimeScale"):FireServer(unpack(args))
     -- Spawn
+    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayerReady"):FireServer()
     local unit = game:GetService("Players")[game.Players.LocalPlayer.Name]:WaitForChild("Slots"):WaitForChild("Slot1")
     local unitname = unit.Value
     local Players = game:GetService("Players")
