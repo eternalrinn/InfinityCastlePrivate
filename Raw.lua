@@ -134,7 +134,7 @@ local function SpawnUnit1()
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("VoteChangeTimeScale"):FireServer(unpack(args))
     -- Spawn
     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayerReady"):FireServer()
-    local unit = game:GetService("Players")[game.Players.LocalPlayer.Name]:WaitForChild("Slots"):WaitForChild("Slot1")
+    local unit = game:GetService("Players")[game.Players.LocalPlayer.Name].Slots.Slots1
     local unitname = unit.Value
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
@@ -181,6 +181,6 @@ if game.PlaceId == LobbyPlaceId then
     wait(120)
     game:GetService("TeleportService"):Teleport(12886143095)
 else 
-    wait(10)
+    wait(3)
     SpawnUnit1()
 end
